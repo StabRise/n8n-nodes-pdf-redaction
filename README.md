@@ -6,9 +6,7 @@
 
 This is an n8n community node. It lets you detect and redact PII (Personally Identifiable Information) in PDF documents using the [PDF Redaction API](https://pdf-redaction.com/) in your n8n workflows.
 
-[PDF Redaction](https://pdf-redaction.com/) is an AI-powered service that automatically finds and redacts sensitive information in PDFs — both digital and scanned (image-based) documents. See the [pdf-redaction-api](https://github.com/StabRise/pdf-redaction-api) repository for the underlying REST API, Python client, and example notebooks.
-
-[n8n](https://n8n.io/) is a [fair-code licensed](https://docs.n8n.io/sustainable-use-license/) workflow automation platform.
+[PDF Redaction](https://pdf-redaction.com/) is an AI-powered service that automatically finds and redacts sensitive information in PDFs — both digital and scanned (image-based) documents. See the [pdf-redaction-api](https://pdf-redaction.com/docs/api/) documentation for the underlying REST API, and example notebooks.
 
 [Installation](#installation)
 [Operations](#operations)
