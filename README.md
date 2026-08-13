@@ -1,6 +1,12 @@
+<p align="center">
+  <img src="https://pdf-redaction.com/images/pdf-redaction-logo.svg" alt="PDF Redaction" width="345" height="84">
+</p>
+
 # n8n-nodes-pdf-redaction
 
-This is an n8n community node. It lets you use GitHub Issues in your n8n workflows.
+This is an n8n community node. It lets you detect and redact PII (Personally Identifiable Information) in PDF documents using the [PDF Redaction API](https://pdf-redaction.com/) in your n8n workflows.
+
+[PDF Redaction](https://pdf-redaction.com/) is an AI-powered service that automatically finds and redacts sensitive information in PDFs — both digital and scanned (image-based) documents. See the [pdf-redaction-api](https://github.com/StabRise/pdf-redaction-api) repository for the underlying REST API, Python client, and example notebooks.
 
 [n8n](https://n8n.io/) is a [fair-code licensed](https://docs.n8n.io/sustainable-use-license/) workflow automation platform.
 
@@ -17,51 +23,26 @@ Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes
 
 ## Operations
 
-- Issues
-    - Get an issue
-    - Get many issues in a repository
-    - Create a new issue
-- Issue Comments
-    - Get many issue comments
+- **Anonymize** — redact PII in a PDF, choosing which PII types (tags) to detect and redact (dates, names, emails, addresses, credit cards, etc.)
+- **Anonymize with Custom Prompt** — redact information described by a free-text prompt instead of predefined tags (e.g. "Redact all dates, names, and email addresses")
+- **Detect PII** — scan a PDF for PII and return the detected entities without redacting the document
+
+All operations read the input PDF from a binary property on the input item and, for the anonymize operations, write the redacted PDF back to a binary property on the output item. Every operation also returns `detected_pii` (entities with bounding boxes) and `processing_time` metrics in the output JSON.
+
+### What it can detect and redact
+
+Dates, person names, organizations, locations, emails, phone numbers, IDs, account numbers, zip codes, addresses, IP addresses, URLs, SSNs, driver licenses, passports, passwords, ages, credit card numbers, money amounts, signatures, QR codes, and faces — plus your own custom tags. Detection works on both digital PDFs and scanned/image-based PDFs (via OCR, with support for multiple languages), including rotated text.
+
+### Limits
+
+Only the first few pages of a document are processed per request, and free-tier accounts are additionally capped (at the time of writing: 10 pages/request, 100 requests/month, 5 requests/minute) — check your plan at [pdf-redaction.com/apikeys](https://pdf-redaction.com/apikeys/) for current limits.
 
 ## Credentials
 
-You can use either access token or OAuth2 to use this node.
+This node uses an API key credential (**PDF Redaction API**):
 
-### Access token
-
-1. Open your GitHub profile [Settings](https://github.com/settings/profile).
-2. In the left navigation, select [Developer settings](https://github.com/settings/apps).
-3. In the left navigation, under Personal access tokens, select Tokens (classic).
-4. Select Generate new token > Generate new token (classic).
-5. Enter a descriptive name for your token in the Note field, like n8n integration.
-6. Select the Expiration you'd like for the token, or select No expiration.
-7. Select Scopes for your token. For most of the n8n GitHub nodes, add the `repo` scope.
-    - A token without assigned scopes can only access public information.
-8. Select Generate token.
-9. Copy the token.
-
-Refer to [Creating a personal access token (classic)](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token-classic) for more information. Refer to Scopes for OAuth apps for more information on GitHub scopes.
-
-![Generated Access token in GitHub](https://docs.github.com/assets/cb-17251/mw-1440/images/help/settings/personal-access-tokens.webp)
-
-### OAuth2
-
-If you're self-hosting n8n, create a new GitHub [OAuth app](https://docs.github.com/en/apps/oauth-apps):
-
-1. Open your GitHub profile [Settings](https://github.com/settings/profile).
-2. In the left navigation, select [Developer settings](https://github.com/settings/apps).
-3. In the left navigation, select OAuth apps.
-4. Select New OAuth App.
-    - If you haven't created an app before, you may see Register a new application instead. Select it.
-5. Enter an Application name, like n8n integration.
-6. Enter the Homepage URL for your app's website.
-7. If you'd like, add the optional Application description, which GitHub displays to end-users.
-8. From n8n, copy the OAuth Redirect URL and paste it into the GitHub Authorization callback URL.
-9. Select Register application.
-10. Copy the Client ID and Client Secret this generates and add them to your n8n credential.
-
-Refer to the [GitHub Authorizing OAuth apps documentation](https://docs.github.com/en/apps/oauth-apps/using-oauth-apps/authorizing-oauth-apps) for more information on the authorization process.
+1. Go to [pdf-redaction.com/apikeys](https://pdf-redaction.com/apikeys/) and generate an API key.
+2. In n8n, create a new **PDF Redaction API** credential and paste the key into the **API Key** field.
 
 ## Compatibility
 
@@ -70,4 +51,7 @@ Compatible with n8n@1.60.0 or later
 ## Resources
 
 * [n8n community nodes documentation](https://docs.n8n.io/integrations/#community-nodes)
-* [GitHub API docs](https://docs.github.com/en/rest/issues)
+* [PDF Redaction website](https://pdf-redaction.com/)
+* [PDF Redaction API docs (Swagger)](https://api.pdf-redaction.com/api/docs)
+* [PDF Redaction API key management](https://pdf-redaction.com/apikeys/)
+* [pdf-redaction-api](https://github.com/StabRise/pdf-redaction-api) — Python client, example notebooks, and self-hosting instructions for the underlying API
