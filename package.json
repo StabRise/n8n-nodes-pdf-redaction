@@ -13,7 +13,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/StabRise/n8n-nodes-pdf-redaction.git"
+        "url": "git+https://github.com/StabRise/n8n-nodes-pdf-redaction.git"
     },
     "scripts": {
         "build": "n8n-node build",
@@ -27,6 +27,9 @@
     "files": [
         "dist"
     ],
+    "publishConfig": {
+        "access": "public"
+    },
     "n8n": {
         "n8nNodesApiVersion": 1,
         "strict": true,
