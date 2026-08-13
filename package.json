@@ -1,6 +1,6 @@
 {
     "name": "@stabrise/n8n-nodes-pdf-redaction",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "n8n community node for detecting and redacting PII in PDF documents via the PDF Redaction API (api.pdf-redaction.com)",
     "license": "MIT",
     "homepage": "https://github.com/StabRise/n8n-nodes-pdf-redaction",
@@ -15,15 +15,15 @@
         "type": "git",
         "url": "https://github.com/StabRise/n8n-nodes-pdf-redaction.git"
     },
-   "scripts": {
-		"build": "n8n-node build",
-		"build:watch": "tsc --watch",
-		"dev": "n8n-node dev",
-		"lint": "n8n-node lint",
+    "scripts": {
+        "build": "n8n-node build",
+        "build:watch": "tsc --watch",
+        "dev": "n8n-node dev",
+        "lint": "n8n-node lint",
         "lint:fix": "n8n-node lint --fix",
-		"release": "n8n-node release",
-		"prepublishOnly": "n8n-node prerelease"
-	},
+        "release": "n8n-node release",
+        "prepublishOnly": "n8n-node prerelease"
+    },
     "files": [
         "dist"
     ],
