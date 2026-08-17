@@ -1,6 +1,6 @@
 {
     "name": "@stabrise/n8n-nodes-pdf-redaction",
-    "version": "0.1.4",
+    "version": "0.1.5",
     "description": "n8n community node for detecting and redacting PII in PDF documents via the PDF Redaction API (api.pdf-redaction.com)",
     "license": "MIT",
     "homepage": "https://pdf-redaction.com/docs/",
