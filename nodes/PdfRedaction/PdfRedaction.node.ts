@@ -22,6 +22,7 @@ export class PdfRedaction implements INodeType {
 		version: 1,
 		subtitle: '={{$parameter["operation"]}}',
 		description: 'Detect and redact PII in PDF documents using the PDF Redaction API',
+		documentationUrl: 'https://pdf-redaction.com/docs/integrations/n8n/',
 		defaults: {
 			name: 'PDF Redaction',
 		},
@@ -35,6 +36,13 @@ export class PdfRedaction implements INodeType {
 			},
 		],
 		properties: [
+			{
+				displayName:
+					'Detects and redacts PII in PDF documents using the PDF Redaction API. Needs a PDF Redaction API credential — free tier includes 100 pages/month.',
+				name: 'notice',
+				type: 'notice',
+				default: '',
+			},
 			{
 				displayName: 'Operation',
 				name: 'operation',

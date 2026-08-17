@@ -33,7 +33,7 @@ Dates, person names, organizations, locations, emails, phone numbers, IDs, accou
 
 ### Limits
 
-Only the first few pages of a document are processed per request, and free-tier accounts are additionally capped (at the time of writing: 10 pages/request, 100 requests/month, 5 requests/minute) — check your plan at [pdf-redaction.com/apikeys](https://pdf-redaction.com/apikeys/) for current limits.
+Only the first 10 pages of a document are processed per request, and free-tier accounts are additionally capped (at the time of writing: 10 pages/request, 100 requests/month, 5 requests/minute) — check your plan at [pdf-redaction.com/apikeys](https://pdf-redaction.com/apikeys/) for current limits.
 
 ## Credentials
 

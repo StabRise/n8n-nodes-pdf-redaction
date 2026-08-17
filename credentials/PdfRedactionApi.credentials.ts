@@ -23,7 +23,8 @@ export class PdfRedactionApi implements ICredentialType {
 			typeOptions: { password: true },
 			default: '',
 			required: true,
-			description: 'Generate an API key at https://pdf-redaction.com/apikeys/',
+			description: 'Log in and generate a free API key at https://pdf-redaction.com/apikeys/ (free limit: 100 pages/month)',
+			hint: 'Log in and generate a free API key at https://pdf-redaction.com/apikeys/. Free limit is 100 pages per month.',
 		},
 	];
 
