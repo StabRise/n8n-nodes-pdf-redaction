@@ -42,9 +42,21 @@ This node uses an API key credential (**PDF Redaction API**):
 1. Go to [pdf-redaction.com/apikeys](https://pdf-redaction.com/apikeys/) and generate an API key.
 2. In n8n, create a new **PDF Redaction API** credential and paste the key into the **API Key** field.
 
+<p align="center">
+  <img src="docs/images/20-api-keys.jpg" alt="PDF Redaction API Keys page" width="700">
+</p>
+
 ## Compatibility
 
 Compatible with n8n@1.60.0 or later
+
+## Usage
+
+Track how much of your plan's quota you've used on the [API Usage](https://pdf-redaction.com/apikeys/usage/) page — it shows your current usage against your plan limit and a daily breakdown chart.
+
+<p align="center">
+  <img src="docs/images/19-api-usage.jpg" alt="PDF Redaction API Usage page" width="700">
+</p>
 
 ## Resources
 
