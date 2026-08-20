@@ -17,7 +17,7 @@ This is an n8n community node. It lets you detect and redact PII (Personally Ide
 
 ## Installation
 
-Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes/installation/) in the n8n community nodes documentation.
+Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes/installation/) in the n8n community nodes documentation, or the step-by-step [PDF Redaction install & setup tutorial](https://pdf-redaction.com/docs/integrations/n8n/install/) for a walkthrough with screenshots.
 
 ## Operations
 
@@ -46,17 +46,66 @@ This node uses an API key credential (**PDF Redaction API**):
   <img src="docs/images/20-api-keys.jpg" alt="PDF Redaction API Keys page" width="700">
 </p>
 
+<p align="center">
+  <img src="docs/images/04-credential-form-empty.jpg" alt="PDF Redaction API credential form in n8n with the API Key field" width="700"><br>
+  <sub>The credential form inside n8n — paste the key you generated above into the <b>API Key</b> field and save.</sub>
+</p>
+
+Once your key is active, the [API Usage](https://pdf-redaction.com/apikeys/usage/) tab on the same page tracks consumption against your plan — a running total plus a day-by-day breakdown — so you can see how close you are to your monthly cap before a workflow starts failing.
+
+<p align="center">
+  <img src="docs/images/19-api-usage.jpg" alt="PDF Redaction API Usage page" width="700">
+</p>
+
 ## Compatibility
 
 Compatible with n8n@1.60.0 or later
 
 ## Usage
 
-Track how much of your plan's quota you've used on the [API Usage](https://pdf-redaction.com/apikeys/usage/) page — it shows your current usage against your plan limit and a daily breakdown chart.
+The example below wires up a small workflow that pulls a PDF from a URL and blacks out any faces it contains, then inspects what came back.
+
+**1. Fetch a file.** An **HTTP Request** node (`GET`, Response Format set to `File`) grabs the source PDF and hands it downstream as binary data on its `data` field.
 
 <p align="center">
-  <img src="docs/images/19-api-usage.jpg" alt="PDF Redaction API Usage page" width="700">
+  <img src="docs/images/10-e2e-http-request-fetch.jpg" alt="HTTP Request node returning a fetched PDF as binary data" width="700">
 </p>
+
+**2. Configure the node.** Drop a **PDF Redaction** node after it, pick your credential, leave **Operation** on `Anonymize`, and add `Face` under **Additional Fields → Tags**. Since both nodes default to a `data` binary field, no field mapping is needed.
+
+<p align="center">
+  <img src="docs/images/11-e2e-pdf-redaction-configured.jpg" alt="PDF Redaction node set to Anonymize with the Face tag selected" width="700">
+</p>
+
+**3. Run it.** Executing the node returns a processed file plus a JSON payload describing every match — here, the two faces it located, each with a bounding box, alongside a per-stage timing breakdown.
+
+<p align="center">
+  <img src="docs/images/12-e2e-output-json.jpg" alt="Output JSON with detected face entities and a processing_time breakdown" width="700">
+</p>
+
+<p align="center">
+  <img src="docs/images/13-e2e-output-binary.jpg" alt="Output binary panel showing the resulting PDF file" width="700">
+</p>
+
+**4. Check the result.** Opening the output file confirms both faces are blacked out on the page.
+
+<p align="center">
+  <img src="docs/images/15-e2e-redacted-pdf-content.jpg" alt="Rendered PDF page with faces blacked out" width="700">
+</p>
+
+**5. The finished workflow.** Three nodes, each with a green checkmark after a successful run.
+
+<p align="center">
+  <img src="docs/images/14-e2e-full-workflow.jpg" alt="Complete n8n workflow: Manual Trigger, HTTP Request, and PDF Redaction nodes, all executed successfully" width="700">
+</p>
+
+Any node that produces binary data works as the source — a webhook payload, **Read/Write File from Disk**, an email attachment, or a cloud-storage node — as long as its output field name matches the **Input Binary Field** you set on PDF Redaction.
+
+For the full step-by-step tutorials this walkthrough is based on, see:
+
+* [Install & configure the node](https://pdf-redaction.com/docs/integrations/n8n/install/)
+* [Anonymize a PDF, end to end](https://pdf-redaction.com/docs/integrations/n8n/anonymize-pdf/)
+* [Detect PII without redacting](https://pdf-redaction.com/docs/integrations/n8n/detect-pii/)
 
 ## Resources
 
