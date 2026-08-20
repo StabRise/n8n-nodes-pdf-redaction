@@ -4,6 +4,8 @@
 
 # n8n-nodes-pdf-redaction
 
+[![npm version](https://img.shields.io/npm/v/%40stabrise%2Fn8n-nodes-pdf-redaction.svg)](https://www.npmjs.com/package/@stabrise/n8n-nodes-pdf-redaction)
+
 This is an n8n community node. It lets you detect and redact PII (Personally Identifiable Information) in PDF documents using the [PDF Redaction API](https://pdf-redaction.com/) in your n8n workflows.
 
 [PDF Redaction](https://pdf-redaction.com/) is an AI-powered service that automatically finds and redacts sensitive information in PDFs — both digital and scanned (image-based) documents. See the [pdf-redaction-api](https://pdf-redaction.com/docs/api/) documentation for the underlying REST API, and example notebooks.
