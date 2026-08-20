@@ -1,8 +1,8 @@
 {
-	"node": "@stabrise/n8n-nodes-pdf-redaction",
+	"node": "@stabrise/n8n-nodes-pdf-redaction.pdfRedaction",
 	"nodeVersion": "1.0",
 	"codexVersion": "1.0",
-	"categories": ["Development", "Developer Tools"],
+	"categories": ["Development", "Productivity", "Utility"],
 	"resources": {
 		"credentialDocumentation": [
 			{
